@@ -14,6 +14,7 @@ import TheWelcome from './components/TheWelcome.vue'
 
   <main>
     <TheWelcome />
+    <h1 class="text-3xl font-bold underline">hello</h1>
   </main>
 </template>
 
