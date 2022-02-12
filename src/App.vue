@@ -11,11 +11,11 @@ export default {
 
   data() {
     return {
-      accessories: 'headphone.png',
+      accessories: 'glasses.png',
       backgrounds: 'blue50.png',
       ears: 'default.png',
       eyes: 'default.png',
-      hair: 'fancy.png',
+      hair: 'default.png',
       leg: 'default.png',
       mouth: 'default.png',
       neck: 'default.png',
@@ -31,7 +31,6 @@ export default {
       this.$refs[folder].changeImg(folder, file)
     },
     changeType(type){
-      console.log(type)
       this.typeSelected = type
     }
   },
@@ -53,7 +52,7 @@ export default {
   <div>
     <button class="px-4 py-2 rounded-xl bg-slate-500 text-slate-50 font-bold m-2 hover:bg-slate-400" v-for="(folder, folderName) in assetList" @click="() => {changeType(folderName)}">{{folderName}}</button>
     <div v-for="(folder, folderName) in assetList" v-show="typeSelected == folderName">
-      <!-- <h2 class="font-bold uppercase">{{ folderName }}</h2> -->
+      <h2 class="font-bold uppercase">{{ folderName }}</h2>
       <Button v-for="file in folder" :type="folderName" :asset="file" @changeFile="() => {changeFile(folderName, file)}"/>
     </div>
   </div>
