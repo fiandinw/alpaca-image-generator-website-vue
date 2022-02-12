@@ -7,18 +7,18 @@ export default{
 
   data(){
     return{
-      imgPath: `src/assets/alpaca/${this.dir}/${this.img}.png`
+      imgPath: `src/assets/alpaca/${this.dir}/${this.img}`
     }
   },
 
   methods:{
-    changeImg(){
-      this.imgPath = `src/assets/alpaca/${this.dir}/${this.img}.png`
+    changeImg(folder, file){
+      this.imgPath = `src/assets/alpaca/${folder}/${file}`
     }
   },
 }
 </script>
 
 <template>
-  <img :src="imgPath"/>
+  <img class="absolute h-full" :src="imgPath"/>
 </template>
