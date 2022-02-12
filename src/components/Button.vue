@@ -1,10 +1,12 @@
 <script>
 	export default{
 		emits:['changeFile'],
+		
 		props:{
 			asset: String,
 			type: String
 		},
+
 		methods:{
 			changeAsset(){
 				this.$emit('changeFile')

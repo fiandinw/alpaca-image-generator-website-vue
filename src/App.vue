@@ -2,12 +2,13 @@
 import Alpaca from './components/Alpaca.vue'
 import assetList from './utils/assetList.json'
 import Button from './components/Button.vue'
+import domtoimage from 'dom-to-image'
 
 export default {
 	components:{
     Alpaca,
     Button
-},
+  },
 
   data() {
     return {
@@ -32,13 +33,27 @@ export default {
     },
     changeType(type){
       this.typeSelected = type
+    },
+    downloadAlpaca(){
+      domtoimage.toJpeg(document.getElementById('alpaca'), { quality: 0.95 })
+        .then(function (dataUrl) {
+          var link = document.createElement('a');
+          link.download = 'alpaca.jpeg';
+          link.href = dataUrl;
+          link.click();
+      });
+    },
+    randomize(){
+      for(let folderName in assetList){
+        this.changeFile(folderName, assetList[folderName][Math.floor(Math.random() * assetList[folderName].length)])
+      }
     }
   },
 }
 </script>
 
 <template>
-  <div class="relative h-[700px] w-[700px]">
+  <div id="alpaca" class="relative h-[700px] w-[700px]">
     <Alpaca dir="backgrounds" :img="backgrounds" ref="backgrounds"/>
     <Alpaca dir="neck" :img="neck" ref="neck"/>
     <Alpaca dir="nose" :img="nose" ref="nose"/>
@@ -48,6 +63,10 @@ export default {
     <Alpaca dir="eyes" :img="eyes" ref="eyes"/>
     <Alpaca dir="leg" :img="leg" ref="leg"/>
     <Alpaca dir="accessories" :img="accessories" ref="accessories"/>
+  </div>
+  <div>
+    <button class="px-4 py-2 rounded-xl bg-slate-500 text-slate-50 font-bold m-2 hover:bg-slate-400" @click="randomize">random</button>
+    <button class="px-4 py-2 rounded-xl bg-slate-500 text-slate-50 font-bold m-2 hover:bg-slate-400" @click="downloadAlpaca">download</button>
   </div>
   <div>
     <button class="px-4 py-2 rounded-xl bg-slate-500 text-slate-50 font-bold m-2 hover:bg-slate-400" v-for="(folder, folderName) in assetList" @click="() => {changeType(folderName)}">{{folderName}}</button>
