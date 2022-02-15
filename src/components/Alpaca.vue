@@ -20,5 +20,5 @@ export default{
 </script>
 
 <template>
-  <img class="absolute h-full" :src="imgPath"/>
+  <img class="absolute h-auto w-full" :src="imgPath"/>
 </template>
